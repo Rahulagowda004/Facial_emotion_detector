@@ -15,11 +15,13 @@ class PrepareBaseModelConfig:
     root_dir: Path
     source_URL: str
     local_data_file: Path
-    unzip_dir: Path
+    base_model_path: Path
+    updated_base_model_path: Path
+    params_image_size: list
+    params_classes: int
     
 @dataclass(frozen=True)
 class PrepareWeightsConfig:
     root_dir: Path
     source_URL: str
     local_data_file: Path
-    unzip_dir: Path

@@ -13,8 +13,6 @@ class ConfigurationManager:
 
         create_directories([self.config.artifacts_root])
 
-
-    
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
 
@@ -46,7 +44,7 @@ class ConfigurationManager:
 
         return prepare_base_model_config
     
-    def get_weights_config(self) -> PrepareWeightsConfig:
+    def prepare_get_weights_config(self) -> PrepareWeightsConfig:
         config = self.config.prepare_weights
 
         create_directories([config.root_dir])

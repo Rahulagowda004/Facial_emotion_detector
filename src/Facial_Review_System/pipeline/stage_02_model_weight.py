@@ -17,7 +17,8 @@ class ModelWeightDownloadPipeline:
         vgg_model = ModelDownload(config = model_config)
         zip_download_dir = model_config.local_data_file  # Define zip_download_dir
         vgg_model.download_file()
-        weight_config = config.get_prepare_weights_config()
+        
+        weight_config = config.prepare_get_weights_config()  # Corrected method name
         comp_weights = WeightsDownload(config=weight_config)
         zip_download_dir = weight_config.local_data_file  # Define zip_download_dir
         comp_weights.download_file()

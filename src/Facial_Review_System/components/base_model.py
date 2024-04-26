@@ -1,5 +1,4 @@
 import os
-import zipfile
 import gdown
 from Facial_Review_System import logger
 from Facial_Review_System.utils.common import get_size

@@ -30,7 +30,6 @@ python3 -m venv .venv
 .venv\Scripts\activate
 ```
 
-
 ### STEP 02- install the requirements
 ```bash
 pip install -r requirements.txt

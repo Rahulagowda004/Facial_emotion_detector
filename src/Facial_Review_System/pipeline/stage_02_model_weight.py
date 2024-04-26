@@ -13,14 +13,14 @@ class ModelWeightDownloadPipeline:
     def main(self):
         
         config = ConfigurationManager()
-        model_config = config.get_model_config()  # Corrected method name
+        model_config = config.get_model_config()  
         vgg_model = ModelDownload(config = model_config)
-        zip_download_dir = model_config.local_data_file  # Define zip_download_dir
+        zip_download_dir = model_config.local_data_file  
         vgg_model.download_file()
         
-        weight_config = config.prepare_get_weights_config()  # Corrected method name
+        weight_config = config.prepare_get_weights_config()  
         comp_weights = WeightsDownload(config=weight_config)
-        zip_download_dir = weight_config.local_data_file  # Define zip_download_dir
+        zip_download_dir = weight_config.local_data_file 
         comp_weights.download_file()
 
 

@@ -4,6 +4,7 @@ from Facial_Review_System import logger
 from Facial_Review_System.utils.common import get_size
 from Facial_Review_System.entity.config_entity import (PrepareBaseModelConfig)
 
+#this class is for downloading model 
 class ModelDownload:
     def __init__(self, config: PrepareBaseModelConfig):
         self.config = config

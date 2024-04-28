@@ -36,9 +36,7 @@ class ConfigurationManager:
             root_dir=Path(config.root_dir),
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
-            base_model_path=Path(config.base_model_path),
-            params_image_size=self.params.IMAGE_SIZE,
-            params_classes=self.params.CLASSES
+            base_model_path=Path(config.base_model_path)
         )
 
         return prepare_base_model_config

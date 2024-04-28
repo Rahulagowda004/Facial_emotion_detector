@@ -16,11 +16,3 @@ class PrepareBaseModelConfig:
     source_URL: str
     local_data_file: Path
     base_model_path: Path
-    params_image_size: list
-    params_classes: int
-    
-@dataclass(frozen=True)
-class PrepareWeightsConfig:
-    root_dir: Path
-    source_URL: str
-    local_data_file: Path

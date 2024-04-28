@@ -16,7 +16,6 @@ class PrepareBaseModelConfig:
     source_URL: str
     local_data_file: Path
     base_model_path: Path
-    updated_base_model_path: Path
     params_image_size: list
     params_classes: int
     

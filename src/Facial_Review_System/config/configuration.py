@@ -37,22 +37,8 @@ class ConfigurationManager:
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
             base_model_path=Path(config.base_model_path),
-            updated_base_model_path=Path(config.updated_base_model_path),
             params_image_size=self.params.IMAGE_SIZE,
             params_classes=self.params.CLASSES
         )
 
         return prepare_base_model_config
-    
-    def prepare_get_weights_config(self) -> PrepareWeightsConfig:
-        config = self.config.prepare_weights
-
-        create_directories([config.root_dir])
-
-        prepare_weights_config = PrepareWeightsConfig(
-            root_dir=config.root_dir,
-            source_URL=config.source_URL,
-            local_data_file=config.local_data_file
-        )
-        
-        return prepare_weights_config

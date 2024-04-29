@@ -44,7 +44,7 @@ class PrepareBaseModel:
 
         flatten_in = tf.keras.layers.Flatten()(x)
         
-        x = tf.keras.layers.Dense(512, activation='relu')(x)
+        x = tf.keras.layers.Dense(512, activation='relu')(flatten_in)
         x = tf.keras.layers.Dropout(0.25)(x)
         x = tf.keras.layers.Dense(216, activation='relu')(x)
         
@@ -59,7 +59,7 @@ class PrepareBaseModel:
         )
 
         full_model.compile(
-            optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
+            optimizer=tf.keras.optimizers.SGD(),
             loss=tf.keras.losses.CategoricalCrossentropy(),
             metrics=["accuracy"]
         )

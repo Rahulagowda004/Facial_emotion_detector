@@ -1,6 +1,7 @@
 from Facial_Review_System.config.configuration import ConfigurationManager
 from Facial_Review_System.components.model_evaluation_mlflow import Evaluation
 from Facial_Review_System import logger
+
 STAGE_NAME = "Evaluation stage"
 
 

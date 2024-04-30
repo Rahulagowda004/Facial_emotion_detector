@@ -1,7 +1,10 @@
 from Facial_Review_System.constants import *
 from Facial_Review_System.utils.common import read_yaml, create_directories
-from Facial_Review_System.entity.config_entity import *
-import os
+from Facial_Review_System.entity.config_entity import (DataIngestionConfig,
+                                                PrepareBaseModelConfig,
+                                                TrainingConfig,
+                                                EvaluationConfig)
+
 
 class ConfigurationManager:
     def __init__(
@@ -14,6 +17,8 @@ class ConfigurationManager:
 
         create_directories([self.config.artifacts_root])
 
+
+    
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
 
@@ -27,17 +32,7 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
-
-    def __init__(
-        self,
-        config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH):
-
-        self.config = read_yaml(config_filepath)
-        self.params = read_yaml(params_filepath)
-
-        create_directories([self.config.artifacts_root])
-
+    
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
         
@@ -56,23 +51,14 @@ class ConfigurationManager:
 
         return prepare_base_model_config
     
-    def __init__(
-        self,
-        config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH):
-
-        self.config = read_yaml(config_filepath)
-        self.params = read_yaml(params_filepath)
-
-        create_directories([self.config.artifacts_root])
 
 
-    
+
     def get_training_config(self) -> TrainingConfig:
         training = self.config.training
         prepare_base_model = self.config.prepare_base_model
         params = self.params
-        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "dataset")
+        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "kidney-ct-scan-image")
         create_directories([
             Path(training.root_dir)
         ])
@@ -90,23 +76,16 @@ class ConfigurationManager:
 
         return training_config
     
-class ConfigurationManager:
-    def __init__(
-        self, 
-        config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH):
-        self.config = read_yaml(config_filepath)
-        self.params = read_yaml(params_filepath)
-        create_directories([self.config.artifacts_root])
 
-        
+
     def get_evaluation_config(self) -> EvaluationConfig:
         eval_config = EvaluationConfig(
-            path_of_model="model/model.h5",
-            training_data="artifacts/data_ingestion/dataset",
-            mlflow_uri="MLFLOW_TRACKING_URI=https://dagshub.com/Rahulagowda004/Facial_review_system.mlflow",
+            path_of_model="artifacts/training/model.h5",
+            training_data="artifacts/data_ingestion/kidney-ct-scan-image",
+            mlflow_uri="https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow",
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE
         )
         return eval_config
+

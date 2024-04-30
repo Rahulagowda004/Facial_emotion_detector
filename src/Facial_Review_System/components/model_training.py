@@ -6,7 +6,6 @@ import time
 from pathlib import Path
 from Facial_Review_System.entity.config_entity import TrainingConfig
 
-
 class Training:
     def __init__(self, config: TrainingConfig):
         self.config = config
@@ -58,7 +57,7 @@ class Training:
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
         model.save(path)
-    
+
     def train(self):
         
         self.model.compile(

@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/Facial_review_system/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 7c708b4cbf0119bd54cbdcd10d796665
+      size: 583
+    - path: src/Facial_review_system/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: b8c6778289ea0779324e8a67959ec69f
+      size: 925
+    outs:
+    - path: artifacts/data_ingestion/dataset
+      hash: md5
+      md5: b30f5a7e6c53c567c4755c48951637f2.dir
+      size: 2132472860
+      nfiles: 15453
+  prepare_base_model:
+    cmd: python src/Facial_review_system/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 7c708b4cbf0119bd54cbdcd10d796665
+      size: 583
+    - path: src/Facial_review_system/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: f425445f2f5d19799439415a956d6ba0
+      size: 1018
+    params:
+      params.yaml:
+        CLASSES: 6
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 60ce2e74b91d830094058c5498d17a99.dir
+      size: 153671208
+      nfiles: 2

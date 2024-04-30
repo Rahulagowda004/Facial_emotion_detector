@@ -4,6 +4,7 @@ from Facial_Review_System.entity.config_entity import (DataIngestionConfig,
                                                 PrepareBaseModelConfig,
                                                 TrainingConfig,
                                                 EvaluationConfig)
+import os 
 
 
 class ConfigurationManager:

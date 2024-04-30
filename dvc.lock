@@ -44,3 +44,70 @@ stages:
       md5: 60ce2e74b91d830094058c5498d17a99.dir
       size: 153671208
       nfiles: 2
+  training:
+    cmd: python src/Facial_review_system/pipeline/stage_03_model_training.py
+    deps:
+    - path: artifacts/data_ingestion/dataset
+      hash: md5
+      md5: b30f5a7e6c53c567c4755c48951637f2.dir
+      size: 2132472860
+      nfiles: 15453
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 60ce2e74b91d830094058c5498d17a99.dir
+      size: 153671208
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 7c708b4cbf0119bd54cbdcd10d796665
+      size: 583
+    - path: src/Facial_review_system/pipeline/stage_03_model_training.py
+      hash: md5
+      md5: 29e1cab47b0557459b7cf00bead785be
+      size: 946
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 16
+        EPOCHS: 0
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: fe9489a5b6cb9a0737b5ba39c31f2082
+      size: 78278208
+  evaluation:
+    cmd: python src/Facial_review_system/pipeline/stage_04_model_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/dataset
+      hash: md5
+      md5: b30f5a7e6c53c567c4755c48951637f2.dir
+      size: 2132472860
+      nfiles: 15453
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: fe9489a5b6cb9a0737b5ba39c31f2082
+      size: 78278208
+    - path: config/config.yaml
+      hash: md5
+      md5: 7c708b4cbf0119bd54cbdcd10d796665
+      size: 583
+    - path: src/Facial_review_system/pipeline/stage_04_model_evaluation.py
+      hash: md5
+      md5: 4cd1299e61ce7426c71f367341d240cd
+      size: 951
+    params:
+      params.yaml:
+        BATCH_SIZE: 16
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: a4564bd1a0d60287b550719ff3c79d2f
+      size: 74

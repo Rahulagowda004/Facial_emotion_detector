@@ -4,6 +4,53 @@ A web-based application that detects human emotions from images using advanced d
 
 ---
 
+### 🧠 **Model Architecture**  
+
+The **Facial Emotion Detection Model** is built using **DenseNet201** as the base layers, followed by custom convolutional, dropout, and dense layers for feature extraction and classification. Below is the detailed architecture:  
+
+#### **Base Layers**  
+- **DenseNet201**: Used as the base model for feature extraction, pretrained on ImageNet.
+
+#### **Custom Layers**  
+
+```python
+# First Convolutional Block
+x = tf.keras.layers.Conv2D(32, (3, 3), padding='same')(model.output)  
+x = tf.keras.layers.Dropout(0.45)(x)  
+x = tf.keras.layers.Conv2D(16, (3, 3), padding='same')(x)  
+x = tf.keras.layers.MaxPooling2D((2, 2), padding='same')(x)  
+
+# Second Convolutional Block
+x = tf.keras.layers.Conv2D(32, (3, 3), padding='same')(x)  
+x = tf.keras.layers.Dropout(0.45)(x)  
+x = tf.keras.layers.Conv2D(16, (3, 3), padding='same')(x)  
+x = tf.keras.layers.MaxPooling2D((2, 2), padding='same')(x)  
+
+# Fully Connected Layers
+flatten_in = tf.keras.layers.Flatten()(x)  
+x = tf.keras.layers.Dense(1024, activation='relu')(flatten_in)  
+x = tf.keras.layers.Dense(512, activation='relu')(x)  
+x = tf.keras.layers.Dropout(0.25)(x)  
+x = tf.keras.layers.Dense(216, activation='relu')(x)  
+
+# Output Layer
+prediction = tf.keras.layers.Dense(
+    units=classes,  
+    activation='softmax'  
+)(x)  
+```
+
+### **Highlights of the Architecture**  
+1. **Base Model**: DenseNet201 efficiently extracts spatial features from input images.  
+2. **Convolutional Layers**: Added convolutional layers with dropout for feature refinement and reduction of overfitting.  
+3. **Pooling**: MaxPooling layers for spatial dimensionality reduction.  
+4. **Fully Connected Layers**: Dense layers for high-level feature interpretation, leading to the classification output.  
+5. **Output Layer**: Final softmax layer to predict the probability distribution across emotion classes.  
+
+This layered design ensures that the model is both robust and capable of handling complex patterns in the data.
+
+---
+
 ## 🛠️ **Tech Stacks**  
 
 ### Programming Language  

@@ -45,21 +45,3 @@ Now,
 open up your local host and port
 ```
 
-## MLflow
-
-- [Documentation](https://mlflow.org/docs/latest/index.html)
-
-- [MLflow tutorial](https://youtu.be/qdcHHrsXA48?si=bD5vDS60akNphkem)
-
-##### cmd
-- mlflow ui
-
-### dagshub
-[dagshub](https://dagshub.com/)
-
-MLFLOW_TRACKING_URI=https://dagshub.com/Rahulagowda004/Facial_review_system.mlflow \
-MLFLOW_TRACKING_USERNAME=Rahulagowda004 \
-python script.py
-
-Run this to export as env variables:
-
